@@ -3,7 +3,7 @@ from Trading_Crew import financial_trading_crew  # Import the crew from Trading_
 
 # Streamlit application
 def main():
-    st.title("Financial Trading Decision Support System")
+    st.title("Financial Investing Decision Support System")
 
     # Sidebar for user inputs
     with st.sidebar:
