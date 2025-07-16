@@ -27,6 +27,7 @@ def main():
     # If the user clicks the "Generate Report" button
     if generate_report_button:
         st.session_state["generate_button_disabled"] = True
+
         # Prepare the input dictionary
         financial_trading_inputs = {
             'stock_selection': stock_selection,
@@ -43,10 +44,19 @@ def main():
         # Execute the crew's process with kickoff method
         result = financial_trading_crew.kickoff(financial_trading_inputs)
 
-        # Display the generated report in the container
+        # Display the formatted report
         with report_container:
-            st.subheader("Generated Report")
-            st.write(result)
+            st.subheader("Generated Investment Report")
+
+            if hasattr(result, "tasks_output"):
+                for idx, task in enumerate(result.tasks_output):
+                    agent_name = getattr(task, "agent", f"Agent {idx+1}")
+                    raw_output = getattr(task, "raw", None)
+                    if raw_output:
+                        st.markdown(f"### {agent_name}")
+                        st.markdown(raw_output)
+            else:
+                st.write(result)  # fallback in case of unexpected format
 
         # Re-enable the button after processing
         st.session_state["generate_button_disabled"] = False

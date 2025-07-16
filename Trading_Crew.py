@@ -181,7 +181,7 @@ financial_trading_crew = Crew(
            risk_management_task],
     
     manager_llm=ChatOpenAI(model="gpt-3.5-turbo", 
-                           temperature=0.7),
+                           temperature=0.7, max_tokens=512),
     process=Process.hierarchical,
     verbose=True
 )
