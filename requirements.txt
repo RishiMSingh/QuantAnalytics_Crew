@@ -1,0 +1,10 @@
+streamlit
+pandas
+crewai==0.18.0
+crewai_tools==0.12.1
+langchain
+langchain-openai
+openai
+python-dotenv
+pydantic
+tiktoken
